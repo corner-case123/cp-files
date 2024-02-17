@@ -1,0 +1,14 @@
+
+
+
+**modular arithmetic 
+-> calculate : ( 1 * 2 * 3 .. * n ) % m without overflow
+->  (a * b ) % m -> ( (1 * 2 * 3 ...) % m * 5 % m ) % m 
+-> we can repeatedly break down the seq
+ -> int fac = 1 ; for(int i=1;i<=n;i++) fac = ( fac % m * i % m ) % m 
+ 
+ ** significance of 1e9 + 7 :
+ -> it is close to int limit and also for primes it is possible to find modular inverse
+ 
+ 
+ **extended euclid algo and miller rabin algo : are not so important

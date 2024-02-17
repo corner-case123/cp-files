@@ -1,0 +1,128 @@
+**basics
+
+a % b == 0  -> a =  k * b (k is an integer )
+k = a/b -> a = (a/b) * b -> if 'b' is divisor of 'a' , then 'a/b' is also divisor of 'a'
+ if a | b and b | c then  a | c 
+ 
+ ->  a = k1 * b ; b =  k2 * c ; a = k1 * (k2 * c) ; a = k *  c
+ -> it has only factor  1 and itself 
+ -> prime factorization  a = p1^x * p2^y * p3^z ....
+ 	-> prime factors are used in various problems
+ 	
+**prime factorization // there are various algoerithms for that
+
+-> for finding all divisors of x -> we can check upto sqrt(x)
+	// this idea is a basic observation
+-> for(int i=1;i<=sqrt(x) ; i++) 
+	if (x % i == 0){
+		// both i and x/i are divisors of x
+	}
+-> the theory says that from [1:x] there are O(x/log(x)) prime numbers
+
+
+**finding divisors 
+
+-> search upto sqrt(x) : for(int i=1;i<=sqrt(x);i++) 
+				if (x % i == 0) both i and x/i are divisors
+				
+-> use prime factorization of  x to generate all the divisors (dfs or something)
+-> in this case , time complexity O(no or divisors
+
+**Modulo (for both positive and negative numbers)
+
+-> x % m is the reminder of x/ m and  0 <= x % m < m 
+-> or simply x =  a * m + b where 0 <= b < m 
+-> we add m some number of times so that it is close to x but( <= x )
+
+-> -x % m 
+-> in this case we add m to x some number of times so that it is positive and closest to 0
+-> -15 %  6 = 3 ;  a*m + x =  b ; where 0 <= b < m 
+
+-> in c++ -15 % 6 gives -3 but it should be +3
+
+** modular arithmetic 
+
+-> (a+b)%m = ((a%m) + (b%m)) % m 
+-> (a-b)%m = ((a%m) - (b%m)+m) % m  
+-> (a*b)%m = ((a%m) * (b%m)) % m 
+-> division one is advanced
+-> x % p is basically adding and subtracting p until we reach [0;p-1]
+
+-> derivation : // derivation is same for all three formats 
+	a = k1 * m + c1 ; b = k2 * m + c2 ;
+	(a + b) % m = ((k1+k2)*m +(c1+c2)) % m = (c1 + c2) % m (LHS)
+	(a%m) = c1 ; (b%m) = c2 ;  
+	-> ((a%m) + (b%m)) % m = (c1+c2) % m (RHS)
+	
+
+** binary exponentialtion : pow(n,k)
+-> note : int x = f(n,k) ; return x * x ; 
+-> here x is calculated only once ; one simple reason is f(n,k) is called once then stored
+-> this is based on divide & conquer approach
+
+
+
+** modular division (difficult)
+-> links in the video
+
+** GCD (greatest common divisors)
+-> gcd(x,y) -> such that x % gcd(x,y) == 0 and y % gcd(x,y) == 0 
+->   1 <= gcd(x,y) <= min(x,y) // observation
+-> method 01: find prime factorization and take the least power for every prime and multiply
+-> methos 02 : euclidean algorithm
+
+
+** eucledean gcd 
+-> gcd(a,b) = g ; a % g = 0 ; b % g = 0 ; (a-b) % g =  (a%g - b%g + g) % g = (0 -0+g) % g = 0
+-> g is a divisor of (a-b) as well ;
+-> int gcd(int a ,int b) if (b == 0) return a ; return gcd(b,a%b) ;
+-> O(log(min(a,b))
+-> two numbers are coprime/relative prime is they have gcd(a,b) = 1 
+
+** extended eucledean algo (solves ax + by = 1 if a,b are coprime)
+
+
+** chinese remainder theorem 
+-> https://www.youtube.com/watch?v=EHDEvFuYPRQ
+
+-> task : given x ≡ 3 (mod 4) ; x ≡ 5 (mod 6) ; x ≡ 2 (mod 5) eqns 
+	i have to find the sequence of values 'ai' ;
+	such that ai % 4 = 3 ; ai % 6 = 5 ; ai % 5 = 2 ;
+	
+1)seq for ai % 4 = 3 ; -> 3 , 7 , 11 , 15 
+2)seq for ai % 4 = 3 and ai % 6 = 5 ; 11 , 11 + lcm(4,6) , 11 + 2*lcm(4,6) ,11 + 3*lcm(4,6) ...
+	-> 11 , 23 , 35 , 47 ,...
+	-> here 11 is the first number for which ai % 4 = 3 and ai % 6 = 5 
+
+
+3)seq for ai% 4 = 3 && ai % 6 = 5 && ai % 5 = 2 ; -> 47, 47 + lcm(4,6,5) , 47 + 2 *lcm(4,6,5)..
+	-> 47 is the first number for which : ai % 4 = 3 ; ai % 6 = 5 ; ai % 5 = 2 ;
+	-> 47 , 107 , 167 , ... 
+	
+output : the seq is : 47 , 107 , 167 ; O(m1+m2+m3+...)
+-> idea : observation 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+

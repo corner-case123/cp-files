@@ -1,0 +1,5 @@
+
+** max(a,b)
+-> method 01 : using prime factorizaton (sieve) mine
+-> method 02 : observation : if (n is odd ) cout (n-1)/2 ; if (n is even) cout << n/2 ; 
+-> it is always better to take n-1 if n is odd
