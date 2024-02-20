@@ -1,5 +1,7 @@
 **basics
-
+** remainder theorem :
+-> note that remainder is 0 <= remainder < divisor
+-> so -27 % 5 will be  3 (-6*5 + 3 ) and not -2 
 a % b == 0  -> a =  k * b (k is an integer )
 k = a/b -> a = (a/b) * b -> if 'b' is divisor of 'a' , then 'a/b' is also divisor of 'a'
  if a | b and b | c then  a | c (a|b means a divides b)
