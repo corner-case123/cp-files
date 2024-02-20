@@ -2,7 +2,7 @@
 
 a % b == 0  -> a =  k * b (k is an integer )
 k = a/b -> a = (a/b) * b -> if 'b' is divisor of 'a' , then 'a/b' is also divisor of 'a'
- if a | b and b | c then  a | c 
+ if a | b and b | c then  a | c (a|b means a divides b)
  
  ->  a = k1 * b ; b =  k2 * c ; a = k1 * (k2 * c) ; a = k *  c
  -> it has only factor  1 and itself 
@@ -47,6 +47,17 @@ k = a/b -> a = (a/b) * b -> if 'b' is divisor of 'a' , then 'a/b' is also diviso
 -> (a*b)%m = ((a%m) * (b%m)) % m 
 -> division one is advanced
 -> x % p is basically adding and subtracting p until we reach [0;p-1]
+-> if (ai + aj) % x = 0 ; and (ai - aj) % y = 0 ;
+	-> then ai = k1*x + r1 and a2 = k2*x + r2 ;
+	-> (a1+a2)%x = (r1 + r2) % x 
+	-> since  0 <= r1 , r2 < x
+	-> to satisfy (r1+r2)%x either r1+r2 = 0 or r1+r2 = x (r1+r2 cant be >= 2*x)
+-> for (a1-aj)%y = (k1*y+r1 - (k2*y+r2))%y
+-> = (y*(k1-k2)+(r1-r2))%y
+-> = (r1-r2)%y  {the sign of k1-k2 doesnot matter}
+-> to satisfy (ai-aj)%y = 0 ; r1 = r2 has to satisfy
+
+
 
 -> derivation : // derivation is same for all three formats 
 	a = k1 * m + c1 ; b = k2 * m + c2 ;
@@ -54,7 +65,6 @@ k = a/b -> a = (a/b) * b -> if 'b' is divisor of 'a' , then 'a/b' is also diviso
 	(a%m) = c1 ; (b%m) = c2 ;  
 	-> ((a%m) + (b%m)) % m = (c1+c2) % m (RHS)
 	
-
 ** binary exponentialtion : pow(n,k)
 -> note : int x = f(n,k) ; return x * x ; 
 -> here x is calculated only once ; one simple reason is f(n,k) is called once then stored
