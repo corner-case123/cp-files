@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+#define ll long long 
+#define ff first
+#define ss second 
+#define ld long double
+#define ln '\n'
+using namespace std;
+
+
+void __print(int x) {cerr << x;}
+void __print(long x) {cerr << x;}
+void __print(long long x) {cerr << x;}
+void __print(unsigned x) {cerr << x;}
+void __print(unsigned long x) {cerr << x;}
+void __print(unsigned long long x) {cerr << x;}
+void __print(float x) {cerr << x;}
+void __print(double x) {cerr << x;}
+void __print(long double x) {cerr << x;}
+void __print(char x) {cerr << '\'' << x << '\'';}
+void __print(const char *x) {cerr << '\"' << x << '\"';}
+void __print(const string &x) {cerr << '\"' << x << '\"';}
+void __print(bool x) {cerr << (x ? "true" : "false");}
+
+template<typename T, typename V>
+void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ','; __print(x.second); cerr << '}';}
+template<typename T>
+void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
+void _print() {cerr << "]\n";}
+template <typename T, typename... V>
+void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
+#ifndef ONLINE_JUDGE
+#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
+#else
+#define debug(x...)
+#endif
+
+const ld e = 1e-6 ;
+ld mx =  0.0 ; 
+
+ll ct(vector<ld> v,ld x){
+    ll as = 0 ; 
+    for(auto i:v){
+        as +=  (ll) (i/(x)) ;
+    }
+    return as ; 
+}
+
+void solve(){
+    ll n , k; cin >> n >> k ;  
+    vector<ld> v(n) ;
+    for(auto &x:v) {
+        cin >> x ; 
+        mx =  max(mx,x) ;
+    }
+    ld l = 0.0 , r = mx ; 
+    cout << setprecision(10) ; // this is the key_part to mainatin precision 
+    ld as = 0.0 ;
+    while(l+e<=r){ // l + e is needed else there will be inf loop
+        ld  mid = (l+r)/2.0 ; 
+        debug(mid) ;
+        if (ct(v,mid)>=k){
+            as = mid ;
+            l = mid  ; // since the values are not integrals
+        }
+        else{
+            r =  mid  ; // since the values are not integrals
+        }
+    }
+    cout << as << endl ;
+    return ;
+}
+
+int main(){
+    ll t =1 ;
+    //cin >> t ;
+    while(t--) solve() ;
+    return 0 ;
+}
